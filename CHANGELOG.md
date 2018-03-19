@@ -1,4 +1,7 @@
-## [0.0.3] - 19 March 2018
+## [0.0.4] - 19 March 2018
+* Slack WebView now has action bar so back behaviour is possible on iOS
+
+## [0.0.2] - 19 March 2018
 
 * Initial release
 * Provides a `SlackButton` widget which is styled like an official "Sign in with Slack" button.
