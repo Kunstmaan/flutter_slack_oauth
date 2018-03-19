@@ -1,8 +1,12 @@
 # flutter_slack_oauth
-A flutter OAuth package for Slack
+A flutter OAuth package for Slack with a beautiful "Sign in with Slack" button.
+
+<img src="docs/img/button.png" width="30%"/>
 
 ## Usage
 To use this plugin, add `flutter_slack_oauth` as a dependency in your pubspec.yaml file.
+
+<img src="docs/img/gif.gif" width="40%"/>
 
 ### Example
 ``` dart

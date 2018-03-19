@@ -4,6 +4,9 @@ import 'package:flutter_slack_oauth/flutter_slack_oauth.dart';
 void main() {
   runApp(new MaterialApp(
     home: new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Slack OAuth Example"),
+      ),
       body: new Builder(
         builder: (BuildContext context) {
           return new Center(

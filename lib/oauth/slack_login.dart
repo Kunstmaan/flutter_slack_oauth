@@ -57,6 +57,9 @@ class _SlackLoginWebViewPageState extends State<SlackLoginWebViewPage> {
     }
 
     return new WebviewScaffold(
+      appBar: new AppBar(
+        title: new Text("Log in with Slack"),
+      ),
       url:
           "https://slack.com/oauth/authorize?scope=identity.basic,identity.team,identity.email&team=T024ZT2L3&client_id=$clientId&redirect_uri=$redirectUrl",
     );
