@@ -1,12 +1,14 @@
+[![pub package](https://img.shields.io/pub/v/flutter_slack_oauth.svg)](https://pub.dartlang.org/packages/flutter_slack_oauth) 
+
 # flutter_slack_oauth
 A flutter OAuth package for Slack with a beautiful "Sign in with Slack" button.
 
-<img src="docs/img/button.png" width="30%"/>
+![](docs/img/button.png)
 
 ## Usage
 To use this plugin, add `flutter_slack_oauth` as a dependency in your pubspec.yaml file.
 
-<img src="docs/img/gif.gif" width="40%"/>
+![](docs/img/gif.gif)
 
 ### Example
 ``` dart
