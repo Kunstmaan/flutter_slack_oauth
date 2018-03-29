@@ -3,6 +3,7 @@ library flutter_slack_oauth;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_slack_oauth/oauth/generic_slack_button.dart';
 import 'package:flutter_slack_oauth/oauth/slack_login.dart';
 
 export 'oauth/model/token.dart';
@@ -40,77 +41,33 @@ class _SlackButtonState extends State<SlackButton>
     with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return new GestureDetector(
-      onTap: () async {
-        bool success =
-            await Navigator.of(context).push(new MaterialPageRoute<bool>(
-                  builder: (BuildContext context) => new SlackLoginWebViewPage(
-                        clientId: widget.clientId,
-                        clientSecret: widget.clientSecret,
-                        redirectUrl: widget.redirectUrl == null
-                            ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
-                            : widget.redirectUrl,
-                      ),
-                ));
+    return new GenericSlackButton(
+        clientId: widget.clientId,
+        clientSecret: widget.clientSecret,
+        onSuccess: widget.onSuccess,
+        onCancelledByUser: widget.onCancelledByUser,
+        onFailure: widget.onFailure,
+        onTap: onTap);
+  }
 
-        // if success == null, user just closed the webview
-        if (success == null) {
-          widget.onCancelledByUser();
-        } else if (success == false) {
-          widget.onFailure();
-        } else if (success) {
-          widget.onSuccess();
-        }
-      },
-      child: new Semantics(
-        button: true,
-        child: new DecoratedBox(
-          decoration: new BoxDecoration(
-            color: const Color(0xFFFFFFFF),
-            borderRadius: new BorderRadius.all(
-              const Radius.circular(4.0),
-            ),
-            border: new Border.all(width: 1.0, color: const Color(0xFFBBBBBB)),
-          ),
-          child: new Center(
-            widthFactor: 1.0,
-            heightFactor: 1.0,
-            child: new Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                new Image(
-                  height: 44.0,
-                  width: 44.0,
-                  image: new AssetImage(
-                      'packages/flutter_slack_oauth/assets/images/ic_slack_logo.png'),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.only(right: 12.0),
-                  child: new RichText(
-                    text: new TextSpan(
-                      // Note: Styles for TextSpans must be explicitly defined.
-                      // Child text spans will inherit styles from parent
-                      style: new TextStyle(
-                        fontSize: 14.0,
-                        fontFamily: "Lato",
-                        color: Colors.black,
-                      ),
-                      children: <TextSpan>[
-                        new TextSpan(text: 'Sign in with '),
-                        new TextSpan(
-                            text: 'Slack',
-                            style: new TextStyle(
-                                fontFamily: "Lato",
-                                fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+  onTap() async {
+    bool success = await Navigator.of(context).push(new MaterialPageRoute<bool>(
+          builder: (BuildContext context) => new SlackLoginWebViewPage(
+                clientId: widget.clientId,
+                clientSecret: widget.clientSecret,
+                redirectUrl: widget.redirectUrl == null
+                    ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
+                    : widget.redirectUrl,
+              ),
+        ));
+
+    // if success == null, user just closed the webview
+    if (success == null) {
+      widget.onCancelledByUser();
+    } else if (success == false) {
+      widget.onFailure();
+    } else if (success) {
+      widget.onSuccess();
+    }
   }
 }
