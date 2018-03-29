@@ -10,7 +10,7 @@ dependencies:
   cupertino_icons: ^0.1.0
 
   flutter_slack_oauth:
-        path: ..
+    path: ..
 
 dev_dependencies:
   flutter_test:

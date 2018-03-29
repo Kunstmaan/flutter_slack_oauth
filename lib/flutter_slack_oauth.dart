@@ -22,14 +22,13 @@ class SlackButton extends StatefulWidget {
   final String clientSecret;
   final String redirectUrl;
 
-  const SlackButton({
-    @required this.clientId,
-    @required this.clientSecret,
-    @required this.onSuccess,
-    @required this.onCancelledByUser,
-    @required this.onFailure,
-    this.redirectUrl
-  });
+  const SlackButton(
+      {@required this.clientId,
+      @required this.clientSecret,
+      @required this.onSuccess,
+      @required this.onCancelledByUser,
+      @required this.onFailure,
+      this.redirectUrl});
 
   bool get enabled => onSuccess != null;
 
@@ -44,13 +43,15 @@ class _SlackButtonState extends State<SlackButton>
     return new GestureDetector(
       onTap: () async {
         bool success =
-        await Navigator.of(context).push(new MaterialPageRoute<bool>(
-          builder: (BuildContext context) => new SlackLoginWebViewPage(
-            clientId: widget.clientId,
-            clientSecret: widget.clientSecret,
-            redirectUrl: widget.redirectUrl == null ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html" : widget.redirectUrl,
-          ),
-        ));
+            await Navigator.of(context).push(new MaterialPageRoute<bool>(
+                  builder: (BuildContext context) => new SlackLoginWebViewPage(
+                        clientId: widget.clientId,
+                        clientSecret: widget.clientSecret,
+                        redirectUrl: widget.redirectUrl == null
+                            ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
+                            : widget.redirectUrl,
+                      ),
+                ));
 
         // if success == null, user just closed the webview
         if (success == null) {
@@ -80,7 +81,8 @@ class _SlackButtonState extends State<SlackButton>
                 new Image(
                   height: 44.0,
                   width: 44.0,
-                  image: new AssetImage('packages/flutter_slack_oauth/assets/images/ic_slack_logo.png'),
+                  image: new AssetImage(
+                      'packages/flutter_slack_oauth/assets/images/ic_slack_logo.png'),
                 ),
                 new Padding(
                   padding: new EdgeInsets.only(right: 12.0),

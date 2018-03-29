@@ -9,7 +9,7 @@ class Token {
   String accessToken;
   String tokenType;
 
-  Token.fromMap(Map json){
+  Token.fromMap(Map json) {
     accessToken = json['access_token'];
     tokenType = json['token_type'];
   }
@@ -21,6 +21,7 @@ class Token {
   }
 
   static Future<void> storeAccessToken(String accessToken) async {
-    return SharedPreferences.getInstance().then((sharedPreferences) => sharedPreferences.setString('slack_access_token', accessToken));
+    return SharedPreferences.getInstance().then((sharedPreferences) =>
+        sharedPreferences.setString('slack_access_token', accessToken));
   }
 }

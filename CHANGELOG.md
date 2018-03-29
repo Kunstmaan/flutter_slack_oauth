@@ -1,3 +1,6 @@
+## [0.0.5] - 29 March 2019
+* Formatted with dartfmt
+
 ## [0.0.4] - 19 March 2018
 * Slack WebView now has action bar so back behaviour is possible on iOS
 
