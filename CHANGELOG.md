@@ -1,11 +1,15 @@
-## [0.0.5] - 29 March 2019
+## [0.1.0] - 30 March 2018
+* `SlackButton` now uses a `GenericSlackButton` which is not exposed by default.
+* `GenericSlackButton` can have a custom onTap callback so you can hook up your custom logic, such as binding Firebase Auth.
+* To use `GenericSlackButton`, you need to manually import `package:flutter_slack_oauth/oauth/generic_slack_button.dart`, it is not exposed by default.
+
+## [0.0.5] - 29 March 2018
 * Formatted with dartfmt
 
 ## [0.0.4] - 19 March 2018
 * Slack WebView now has action bar so back behaviour is possible on iOS
 
 ## [0.0.2] - 19 March 2018
-
 * Initial release
 * Provides a `SlackButton` widget which is styled like an official "Sign in with Slack" button.
 * Clicking a `SlackButton` starts a WebView, allowing the user to log in with Slack.

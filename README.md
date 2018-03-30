@@ -50,3 +50,6 @@ void main() {
 }
 
 ```
+
+### Don't want to use the bundled OAuth flow?
+You can also provide your own custom onTap behaviour by manually importing `package:flutter_slack_oauth/oauth/generic_slack_button.dart`.
