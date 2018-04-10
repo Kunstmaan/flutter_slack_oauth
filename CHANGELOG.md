@@ -1,3 +1,6 @@
+## [0.1.1] - 10 April 2018
+* Updated to support Dart 2 (and Flutter Beta 2).
+
 ## [0.1.0] - 30 March 2018
 * `SlackButton` now uses a `GenericSlackButton` which is not exposed by default.
 * `GenericSlackButton` can have a custom onTap callback so you can hook up your custom logic, such as binding Firebase Auth.
