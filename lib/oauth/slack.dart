@@ -10,7 +10,7 @@ Future<UserIdentity> getUserIdentity(String accessToken) async {
   String endpoint = "https://slack.com/api/users.identity?token=$accessToken";
   final http.Response response = await http.get(endpoint);
 
-  return new UserIdentity.fromMap(JSON.decode(response.body));
+  return new UserIdentity.fromMap(json.decode(response.body));
 }
 
 /// Implements the /api/users.list call
@@ -18,5 +18,5 @@ Future<UserList> getUsers(String accessToken) async {
   String endpoint = "https://slack.com/api/users.list?token=$accessToken";
   final http.Response response = await http.get(endpoint);
 
-  return new UserList.fromMap(JSON.decode(response.body));
+  return new UserList.fromMap(json.decode(response.body));
 }

@@ -48,7 +48,7 @@ class _SlackLoginWebViewPageState extends State<SlackLoginWebViewPage> {
             "code": code,
           });
 
-          Token token = new Token.fromMap(JSON.decode(response.body));
+          Token token = new Token.fromMap(json.decode(response.body));
           await Token.storeAccessToken(token.accessToken);
           Navigator.of(context).pop(true);
         }

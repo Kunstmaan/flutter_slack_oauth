@@ -6,7 +6,7 @@ class UserList {
     ok = json['ok'];
     users = new List<User>();
 
-    List<Map> members = (json['members'] as List);
+    List<Map> members = (json['members'] as List).retype<Map>();
 
     for (int i = 0; i < members.length; ++i) {
       users.add(new User.fromMap(members[i]));
