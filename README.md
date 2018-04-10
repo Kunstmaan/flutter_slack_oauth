@@ -27,11 +27,13 @@ void main() {
             child: new SlackButton(
               clientId: "XXX_CLIENT_ID_XXX",
               clientSecret: "XXX_CLIENT_SECRET_XXX",
-              redirectUrl:
-                "https://kunstmaan.github.io/flutter_slack_oauth/success.html",
-              onSuccess: () {
+              redirectUrl: "https://kunstmaan.github.io/flutter_slack_oauth/success.html",
+              onSuccess: () async {
+                String accessToken = await Token.getLocalAccessToken();
+                UserList users = await slack.getUsers(accessToken);
+                
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                  content: new Text('Slack Login Success'),
+                  content: new Text('We found ' + users.users.length.toString() + " users"),
                 ));
               },
               onFailure: () {
