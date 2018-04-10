@@ -14,12 +14,12 @@ class GenericSlackButton extends StatefulWidget {
 
   const GenericSlackButton(
       {@required this.clientId,
-        @required this.clientSecret,
-        @required this.onSuccess,
-        @required this.onCancelledByUser,
-        @required this.onFailure,
-        @required this.onTap,
-        this.redirectUrl});
+      @required this.clientSecret,
+      @required this.onSuccess,
+      @required this.onCancelledByUser,
+      @required this.onFailure,
+      @required this.onTap,
+      this.redirectUrl});
 
   bool get enabled => onSuccess != null;
 

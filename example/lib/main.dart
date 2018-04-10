@@ -22,8 +22,10 @@ void main() {
                 UserList users = await slack.getUsers(accessToken);
 
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                  content: new Text('We found ' + users.users.length.toString() + " users"),
-                ));
+                      content: new Text('We found ' +
+                          users.users.length.toString() +
+                          ' users'),
+                    ));
               },
               onFailure: () {
                 Scaffold.of(context).showSnackBar(new SnackBar(
