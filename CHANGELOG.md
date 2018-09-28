@@ -1,3 +1,7 @@
+## [0.2.0] - 28 September 2018
+* **BREAKING - Required for Flutter Release Preview 2**
+* Updated deprecated dependencies and Dart 2 issues.
+
 ## [0.1.1] - 10 April 2018
 * **BREAKING - Required for Flutter Beta 2**
 * Required changes to support Dart 2 (and Flutter Beta 2).
