@@ -52,14 +52,14 @@ class _SlackButtonState extends State<SlackButton>
 
   onTap() async {
     bool success = await Navigator.of(context).push(new MaterialPageRoute<bool>(
-          builder: (BuildContext context) => new SlackLoginWebViewPage(
-                clientId: widget.clientId,
-                clientSecret: widget.clientSecret,
-                redirectUrl: widget.redirectUrl == null
-                    ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
-                    : widget.redirectUrl,
-              ),
-        ));
+      builder: (BuildContext context) => new SlackLoginWebViewPage(
+            clientId: widget.clientId,
+            clientSecret: widget.clientSecret,
+            redirectUrl: widget.redirectUrl == null
+                ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
+                : widget.redirectUrl,
+          ),
+    ));
 
     // if success == null, user just closed the webview
     if (success == null) {
