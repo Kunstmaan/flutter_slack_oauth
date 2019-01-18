@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class GenericSlackButton extends StatefulWidget {
+class GenericSlackButton extends StatelessWidget {
   final VoidCallback onSuccess;
   final VoidCallback onCancelledByUser;
   final VoidCallback onFailure;
@@ -24,15 +24,9 @@ class GenericSlackButton extends StatefulWidget {
   bool get enabled => onSuccess != null;
 
   @override
-  _GenericSlackButtonState createState() => new _GenericSlackButtonState();
-}
-
-class _GenericSlackButtonState extends State<GenericSlackButton>
-    with SingleTickerProviderStateMixin {
-  @override
   Widget build(BuildContext context) {
     return new GestureDetector(
-      onTap: widget.onTap,
+      onTap: onTap,
       child: new Semantics(
         button: true,
         child: new DecoratedBox(

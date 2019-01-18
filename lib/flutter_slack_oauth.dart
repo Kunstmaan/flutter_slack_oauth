@@ -14,7 +14,7 @@ export 'oauth/slack_login.dart';
 /// A button widget matching the official "Sign in with Slack" design
 ///
 /// It requires a Slack client_id and client_secret, and success/failure/cancel callbacks
-class SlackButton extends StatefulWidget {
+class SlackButton extends StatelessWidget {
   final VoidCallback onSuccess;
   final VoidCallback onCancelledByUser;
   final VoidCallback onFailure;
@@ -34,40 +34,36 @@ class SlackButton extends StatefulWidget {
   bool get enabled => onSuccess != null;
 
   @override
-  _SlackButtonState createState() => new _SlackButtonState();
-}
-
-class _SlackButtonState extends State<SlackButton>
-    with SingleTickerProviderStateMixin {
-  @override
   Widget build(BuildContext context) {
     return new GenericSlackButton(
-        clientId: widget.clientId,
-        clientSecret: widget.clientSecret,
-        onSuccess: widget.onSuccess,
-        onCancelledByUser: widget.onCancelledByUser,
-        onFailure: widget.onFailure,
-        onTap: onTap);
+        clientId: clientId,
+        clientSecret: clientSecret,
+        onSuccess: onSuccess,
+        onCancelledByUser: onCancelledByUser,
+        onFailure: onFailure,
+        onTap: () {
+          onTap(context);
+        });
   }
 
-  onTap() async {
+  onTap(BuildContext context) async {
     bool success = await Navigator.of(context).push(new MaterialPageRoute<bool>(
       builder: (BuildContext context) => new SlackLoginWebViewPage(
-            clientId: widget.clientId,
-            clientSecret: widget.clientSecret,
-            redirectUrl: widget.redirectUrl == null
+            clientId: clientId,
+            clientSecret: clientSecret,
+            redirectUrl: redirectUrl == null
                 ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
-                : widget.redirectUrl,
+                : redirectUrl,
           ),
     ));
 
     // if success == null, user just closed the webview
     if (success == null) {
-      widget.onCancelledByUser();
+      onCancelledByUser();
     } else if (success == false) {
-      widget.onFailure();
+      onFailure();
     } else if (success) {
-      widget.onSuccess();
+      onSuccess();
     }
   }
 }

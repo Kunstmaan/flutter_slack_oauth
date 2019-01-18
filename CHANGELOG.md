@@ -1,3 +1,7 @@
+## [0.3.0] - 18 January 2019
+* Updated Slack icon to the most recent version
+* Refactored to Stateless widgets
+
 ## [0.2.0] - 28 September 2018
 * **BREAKING - Required for Flutter Release Preview 2**
 * Updated deprecated dependencies and Dart 2 issues.

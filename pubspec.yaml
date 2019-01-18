@@ -1,6 +1,6 @@
 name: flutter_slack_oauth
 description: A flutter OAuth package for Slack.
-version: 0.2.0
+version: 0.3.0
 author: Kunstmaan <labs@kunstmaan.be>
 homepage: https://github.com/Kunstmaan/flutter_slack_oauth
 
@@ -8,12 +8,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  http: "^0.11.3+16"
+  http: ^0.11.3+16
   shared_preferences: ^0.4.1
   flutter_webview_plugin: ^0.2.1+2
-
-dev_dependencies:
-  test: ^0.12.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
