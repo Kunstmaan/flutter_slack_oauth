@@ -20,7 +20,7 @@ class SlackLoginWebViewPage extends StatefulWidget {
   final String clientId;
   final String clientSecret;
   final String redirectUrl;
-  final String scope;
+  final List scope;
 
   @override
   _SlackLoginWebViewPageState createState() =>
@@ -35,7 +35,7 @@ class _SlackLoginWebViewPageState extends State<SlackLoginWebViewPage> {
     final flutterWebviewPlugin = new FlutterWebviewPlugin();
     final String clientId = widget.clientId;
     final String redirectUrl = widget.redirectUrl;
-    final String scope = widget.scope;
+    final String scope = widget.scope.join(',');
 
     if (!setupUrlChangedListener) {
       flutterWebviewPlugin.onUrlChanged.listen((String changedUrl) async {

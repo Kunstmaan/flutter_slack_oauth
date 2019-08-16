@@ -22,7 +22,7 @@ class SlackButton extends StatelessWidget {
   final String clientId;
   final String clientSecret;
   final String redirectUrl;
-  final String scope;
+  final List scope;
 
   const SlackButton(
       {@required this.clientId,
@@ -30,7 +30,11 @@ class SlackButton extends StatelessWidget {
       @required this.onSuccess,
       @required this.onCancelledByUser,
       @required this.onFailure,
-      this.scope = 'identity.basic,identity.team,identity.email',
+      this.scope = const [
+        'identity.basic',
+        'identity.team',
+        'identity.email'
+      ],
       this.redirectUrl});
 
   bool get enabled => onSuccess != null;
