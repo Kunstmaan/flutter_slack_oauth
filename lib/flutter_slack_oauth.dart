@@ -22,6 +22,7 @@ class SlackButton extends StatelessWidget {
   final String clientId;
   final String clientSecret;
   final String redirectUrl;
+  final String scope;
 
   const SlackButton(
       {@required this.clientId,
@@ -29,6 +30,7 @@ class SlackButton extends StatelessWidget {
       @required this.onSuccess,
       @required this.onCancelledByUser,
       @required this.onFailure,
+      this.scope = 'identity.basic,identity.team,identity.email',
       this.redirectUrl});
 
   bool get enabled => onSuccess != null;
@@ -51,6 +53,7 @@ class SlackButton extends StatelessWidget {
       builder: (BuildContext context) => new SlackLoginWebViewPage(
             clientId: clientId,
             clientSecret: clientSecret,
+            scope: scope,
             redirectUrl: redirectUrl == null
                 ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
                 : redirectUrl,
