@@ -1,3 +1,6 @@
+## [0.4.0+1] - 19 August 2019
+* Support for custom scopes (thanks to [@AndrzejKaczynski](https://github.com/AndrzejKaczynski))
+
 ## [0.4.0] - 9 April 2019
 * Bumped dependencies for AndroidX compatibility
 
