@@ -14,11 +14,13 @@ class SlackLoginWebViewPage extends StatefulWidget {
     this.clientId,
     this.clientSecret,
     this.redirectUrl,
+    this.scope,
   });
 
   final String clientId;
   final String clientSecret;
   final String redirectUrl;
+  final List scope;
 
   @override
   _SlackLoginWebViewPageState createState() =>
@@ -33,6 +35,7 @@ class _SlackLoginWebViewPageState extends State<SlackLoginWebViewPage> {
     final flutterWebviewPlugin = new FlutterWebviewPlugin();
     final String clientId = widget.clientId;
     final String redirectUrl = widget.redirectUrl;
+    final String scope = widget.scope.join(',');
 
     if (!setupUrlChangedListener) {
       flutterWebviewPlugin.onUrlChanged.listen((String changedUrl) async {
@@ -61,7 +64,7 @@ class _SlackLoginWebViewPageState extends State<SlackLoginWebViewPage> {
         title: new Text("Log in with Slack"),
       ),
       url:
-          "https://slack.com/oauth/authorize?scope=identity.basic,identity.team,identity.email&team=T024ZT2L3&client_id=$clientId&redirect_uri=$redirectUrl",
+          "https://slack.com/oauth/authorize?scope=$scope&team=T024ZT2L3&client_id=$clientId&redirect_uri=$redirectUrl",
     );
   }
 }
