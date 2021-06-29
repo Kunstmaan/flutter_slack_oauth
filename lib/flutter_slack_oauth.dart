@@ -21,15 +21,15 @@ class SlackButton extends StatelessWidget {
 
   final String clientId;
   final String clientSecret;
-  final String redirectUrl;
+  final String? redirectUrl;
   final List scope;
 
   const SlackButton(
-      {@required this.clientId,
-      @required this.clientSecret,
-      @required this.onSuccess,
-      @required this.onCancelledByUser,
-      @required this.onFailure,
+      {required this.clientId,
+      required this.clientSecret,
+      required this.onSuccess,
+      required this.onCancelledByUser,
+      required this.onFailure,
       this.scope = const [
         'identity.basic',
         'identity.team',
@@ -53,7 +53,7 @@ class SlackButton extends StatelessWidget {
   }
 
   onTap(BuildContext context) async {
-    bool success = await Navigator.of(context).push(new MaterialPageRoute<bool>(
+    bool? success = await Navigator.of(context).push(new MaterialPageRoute<bool>(
       builder: (BuildContext context) => new SlackLoginWebViewPage(
             clientId: clientId,
             clientSecret: clientSecret,

@@ -17,10 +17,10 @@ class SlackLoginWebViewPage extends StatefulWidget {
     this.scope,
   });
 
-  final String clientId;
-  final String clientSecret;
-  final String redirectUrl;
-  final List scope;
+  final String? clientId;
+  final String? clientSecret;
+  final String? redirectUrl;
+  final List? scope;
 
   @override
   _SlackLoginWebViewPageState createState() =>
@@ -33,18 +33,18 @@ class _SlackLoginWebViewPageState extends State<SlackLoginWebViewPage> {
   @override
   Widget build(BuildContext context) {
     final flutterWebviewPlugin = new FlutterWebviewPlugin();
-    final String clientId = widget.clientId;
-    final String redirectUrl = widget.redirectUrl;
-    final String scope = widget.scope.join(',');
+    final String? clientId = widget.clientId;
+    final String? redirectUrl = widget.redirectUrl;
+    final String scope = widget.scope!.join(',');
 
     if (!setupUrlChangedListener) {
       flutterWebviewPlugin.onUrlChanged.listen((String changedUrl) async {
-        if (changedUrl.startsWith(widget.redirectUrl)) {
+        if (changedUrl.startsWith(widget.redirectUrl!)) {
           Uri uri = new Uri().resolve(changedUrl);
-          String code = uri.queryParameters["code"];
+          String? code = uri.queryParameters["code"];
 
-          final http.Response response =
-              await http.post("https://slack.com/api/oauth.access", body: {
+          final http.Response response = await http
+              .post(Uri.parse("https://slack.com/api/oauth.access"), body: {
             "client_id": widget.clientId,
             "redirect_uri": widget.redirectUrl,
             "client_secret": widget.clientSecret,

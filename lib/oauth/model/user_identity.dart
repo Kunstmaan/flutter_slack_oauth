@@ -1,7 +1,7 @@
 class UserIdentity {
-  bool ok;
-  User user;
-  Team team;
+  bool? ok;
+  User? user;
+  Team? team;
 
   UserIdentity.fromMap(Map json) {
     ok = json['ok'];
@@ -11,8 +11,8 @@ class UserIdentity {
 }
 
 class User {
-  String name;
-  String id;
+  String? name;
+  String? id;
 
   User.fromMap(Map json) {
     id = json['id'];
@@ -21,7 +21,7 @@ class User {
 }
 
 class Team {
-  String id;
+  String? id;
 
   Team.fromMap(Map json) {
     id = json['id'];

@@ -1,10 +1,10 @@
 class UserList {
-  bool ok;
-  List<User> users;
+  bool? ok;
+  late List<User> users;
 
   UserList.fromMap(Map json) {
     ok = json['ok'];
-    users = new List<User>();
+    List<User> users = [];
 
     List<Map> members = (json['members'] as List).cast();
 
@@ -15,11 +15,11 @@ class UserList {
 }
 
 class User {
-  Profile profile;
-  String id;
-  String name;
-  bool isBot;
-  bool deleted;
+  Profile? profile;
+  String? id;
+  String? name;
+  bool? isBot;
+  bool? deleted;
 
   User.fromMap(Map json) {
     profile = new Profile.fromMap(json['profile']);
@@ -31,11 +31,11 @@ class User {
 }
 
 class Profile {
-  String statusText;
-  String realName;
-  String email;
-  String image192;
-  String image512;
+  String? statusText;
+  String? realName;
+  String? email;
+  String? image192;
+  String? image512;
 
   Profile.fromMap(Map json) {
     statusText = json['status_text'];

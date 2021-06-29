@@ -10,15 +10,15 @@ class GenericSlackButton extends StatelessWidget {
 
   final String clientId;
   final String clientSecret;
-  final String redirectUrl;
+  final String? redirectUrl;
 
   const GenericSlackButton(
-      {@required this.clientId,
-      @required this.clientSecret,
-      @required this.onSuccess,
-      @required this.onCancelledByUser,
-      @required this.onFailure,
-      @required this.onTap,
+      {required this.clientId,
+      required this.clientSecret,
+      required this.onSuccess,
+      required this.onCancelledByUser,
+      required this.onFailure,
+      required this.onTap,
       this.redirectUrl});
 
   bool get enabled => onSuccess != null;

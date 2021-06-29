@@ -3,21 +3,21 @@ description: A flutter OAuth package for Slack.
 version: 0.4.0+1
 author: Kunstmaan <labs@kunstmaan.be>
 homepage: https://github.com/Kunstmaan/flutter_slack_oauth
-
+environment:
+  sdk: '>=2.12.0 <3.0.0'
 dependencies:
   flutter:
     sdk: flutter
 
-  http: ^0.12.0+2
-  shared_preferences: ^0.5.1+2
-  flutter_webview_plugin: ^0.3.3
+  http: ^0.13.3
+  shared_preferences: ^2.0.6
+  flutter_webview_plugin: ^0.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   assets:
     - assets/images/ic_slack_logo.png
 
@@ -27,10 +27,6 @@ flutter:
         - asset: assets/fonts/Lato-Regular.ttf
         - asset: assets/fonts/Lato-Bold.ttf
           weight: 700
-
-environment:
-  sdk: ">=2.0.0-dev.28.0 <3.0.0"
-
   # To add assets to your package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
@@ -41,7 +37,6 @@ environment:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
-
   # To add custom fonts to your package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
