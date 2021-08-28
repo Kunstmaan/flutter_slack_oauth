@@ -2,10 +2,9 @@ class UserList {
   bool ok;
   List<User> users;
 
-  UserList.fromMap(Map json) {
-    ok = json['ok'];
-    users = new List<User>();
-
+  UserList.fromMap(Map json)
+      : this.ok = json['ok'],
+        this.users = new List.empty(growable: true) {
     List<Map> members = (json['members'] as List).cast();
 
     for (int i = 0; i < members.length; ++i) {
@@ -21,27 +20,25 @@ class User {
   bool isBot;
   bool deleted;
 
-  User.fromMap(Map json) {
-    profile = new Profile.fromMap(json['profile']);
-    id = json['id'];
-    name = json['name'];
-    isBot = json['is_bot'];
-    deleted = json['deleted'];
-  }
+  User.fromMap(Map json)
+      : this.profile = new Profile.fromMap(json['profile']),
+        this.id = json['id'],
+        this.name = json['name'],
+        this.isBot = json['is_bot'],
+        this.deleted = json['deleted'];
 }
 
 class Profile {
   String statusText;
   String realName;
-  String email;
+  // String email;
   String image192;
   String image512;
 
-  Profile.fromMap(Map json) {
-    statusText = json['status_text'];
-    realName = json['real_name'];
-    email = json['email'];
-    image192 = json['image_192'];
-    image512 = json['image_512'];
-  }
+  Profile.fromMap(Map json)
+      : this.statusText = json['status_text'],
+        this.realName = json['real_name'],
+        // this.email = json['email'],
+        this.image192 = json['image_192'],
+        this.image512 = json['image_512'];
 }

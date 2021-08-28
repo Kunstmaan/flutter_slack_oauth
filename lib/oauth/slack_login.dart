@@ -3,18 +3,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slack_oauth/oauth/model/token.dart';
-
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-
 import 'package:http/http.dart' as http;
 
 /// A webview used for the sign in with slack flow.
 class SlackLoginWebViewPage extends StatefulWidget {
   const SlackLoginWebViewPage({
-    this.clientId,
-    this.clientSecret,
-    this.redirectUrl,
-    this.scope,
+    required this.clientId,
+    required this.clientSecret,
+    required this.redirectUrl,
+    required this.scope,
   });
 
   final String clientId;
@@ -41,10 +39,13 @@ class _SlackLoginWebViewPageState extends State<SlackLoginWebViewPage> {
       flutterWebviewPlugin.onUrlChanged.listen((String changedUrl) async {
         if (changedUrl.startsWith(widget.redirectUrl)) {
           Uri uri = new Uri().resolve(changedUrl);
-          String code = uri.queryParameters["code"];
+          String? code = uri.queryParameters["code"];
+          if (code == null) {
+            return;
+          }
 
-          final http.Response response =
-              await http.post("https://slack.com/api/oauth.access", body: {
+          final http.Response response = await http
+              .post(Uri.parse("https://slack.com/api/oauth.access"), body: {
             "client_id": widget.clientId,
             "redirect_uri": widget.redirectUrl,
             "client_secret": widget.clientSecret,

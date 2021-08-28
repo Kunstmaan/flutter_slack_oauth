@@ -7,16 +7,20 @@ import 'package:http/http.dart' as http;
 
 /// Implements the /api/users.identity call
 Future<UserIdentity> getUserIdentity(String accessToken) async {
-  String endpoint = "https://slack.com/api/users.identity?token=$accessToken";
-  final http.Response response = await http.get(endpoint);
+  String endpoint = "https://slack.com/api/users.identity";
+  final http.Response response = await http.get(Uri.parse(endpoint), headers: {
+    "Authorization": "Bearer $accessToken",
+  });
 
   return new UserIdentity.fromMap(json.decode(response.body));
 }
 
 /// Implements the /api/users.list call
 Future<UserList> getUsers(String accessToken) async {
-  String endpoint = "https://slack.com/api/users.list?token=$accessToken";
-  final http.Response response = await http.get(endpoint);
+  String endpoint = "https://slack.com/api/users.list";
+  final http.Response response = await http.get(Uri.parse(endpoint), headers: {
+    "Authorization": "Bearer $accessToken",
+  });
 
   return new UserList.fromMap(json.decode(response.body));
 }

@@ -7,16 +7,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Recommended to store the access token in LocalStorage, so users don't need to log in every time
 class Token {
   String accessToken;
-  String tokenType;
 
-  Token.fromMap(Map json) {
-    accessToken = json['access_token'];
-    tokenType = json['token_type'];
-  }
+  Token.fromMap(Map json)
+      : this.accessToken = json['access_token'];
 
-  static Future<String> getLocalAccessToken() async {
+  static Future<String?> getLocalAccessToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String accessToken = prefs.getString("slack_access_token");
+    String? accessToken = prefs.getString("slack_access_token");
     return accessToken;
   }
 
