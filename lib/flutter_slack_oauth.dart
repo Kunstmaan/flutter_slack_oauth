@@ -25,17 +25,13 @@ class SlackButton extends StatelessWidget {
   final List scope;
 
   const SlackButton(
-      {@required this.clientId,
-      @required this.clientSecret,
-      @required this.onSuccess,
-      @required this.onCancelledByUser,
-      @required this.onFailure,
-      this.scope = const [
-        'identity.basic',
-        'identity.team',
-        'identity.email'
-      ],
-      this.redirectUrl});
+      {required this.clientId,
+      required this.clientSecret,
+      required this.onSuccess,
+      required this.onCancelledByUser,
+      required this.onFailure,
+      this.scope = const ['identity.basic', 'identity.team', 'identity.email'],
+      required this.redirectUrl});
 
   bool get enabled => onSuccess != null;
 
@@ -53,24 +49,27 @@ class SlackButton extends StatelessWidget {
   }
 
   onTap(BuildContext context) async {
-    bool success = await Navigator.of(context).push(new MaterialPageRoute<bool>(
+    bool? success =
+        await Navigator.of(context).push(new MaterialPageRoute<bool>(
       builder: (BuildContext context) => new SlackLoginWebViewPage(
-            clientId: clientId,
-            clientSecret: clientSecret,
-            scope: scope,
-            redirectUrl: redirectUrl == null
-                ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
-                : redirectUrl,
-          ),
+        clientId: clientId,
+        clientSecret: clientSecret,
+        scope: scope,
+        redirectUrl: redirectUrl == null
+            ? "https://kunstmaan.github.io/flutter_slack_oauth/success.html"
+            : redirectUrl,
+      ),
     ));
 
     // if success == null, user just closed the webview
     if (success == null) {
       onCancelledByUser();
-    } else if (success == false) {
-      onFailure();
-    } else if (success) {
-      onSuccess();
+    } else {
+      if (success) {
+        onSuccess();
+      } else {
+        onFailure();
+      }
     }
   }
 }

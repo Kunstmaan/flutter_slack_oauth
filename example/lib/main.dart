@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slack_oauth/flutter_slack_oauth.dart';
-
 import 'package:flutter_slack_oauth/oauth/slack.dart' as slack;
 
 void main() {
@@ -18,24 +17,23 @@ void main() {
               redirectUrl:
                   "https://kunstmaan.github.io/flutter_slack_oauth/success.html",
               onSuccess: () async {
-                String accessToken = await Token.getLocalAccessToken();
+                String accessToken = (await Token.getLocalAccessToken())!;
                 UserList users = await slack.getUsers(accessToken);
-
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text('We found ' +
-                          users.users.length.toString() +
-                          ' users'),
-                    ));
+                  content: new Text(
+                      'We found ' + users.users.length.toString() + ' users'),
+                ));
+                print((await slack.getUserIdentity(accessToken)).user.name);
               },
               onFailure: () {
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text('Slack Login Failed'),
-                    ));
+                  content: new Text('Slack Login Failed'),
+                ));
               },
               onCancelledByUser: () {
                 Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text('Slack Login Cancelled by user'),
-                    ));
+                  content: new Text('Slack Login Cancelled by user'),
+                ));
               },
             ),
           );

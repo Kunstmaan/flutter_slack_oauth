@@ -29,7 +29,7 @@ void main() {
               clientSecret: "XXX_CLIENT_SECRET_XXX",
               redirectUrl: "https://kunstmaan.github.io/flutter_slack_oauth/success.html",
               onSuccess: () async {
-                String accessToken = await Token.getLocalAccessToken();
+                String accessToken = (await Token.getLocalAccessToken())!;
                 UserList users = await slack.getUsers(accessToken);
                 
                 Scaffold.of(context).showSnackBar(new SnackBar(
